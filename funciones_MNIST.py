@@ -22,8 +22,8 @@ def grad_softmax(p, y):
     return p - y
 
 #para la prediccion de testeo
-def predict(w,x,b):
-    pred = np.dot(w, x) + b
+def predict(x,w,b):
+    pred = np.dot(x, w) + b
     return pred
 
 #Cross-entropy
