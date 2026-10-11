@@ -31,15 +31,15 @@ En este proyecto se utilizaron 10 000 muestras para entrenamiento y 60 000 para 
 ### 3.1 Capas ocultas
 
 Las tres capas ocultas utilizan la función de activación ReLU.
- - Primera capa: $X \rightarrow Z_{1} = X W_{1} + b_{1} \rightarrow \operatorname{ReLU}(Z_{1}) = H_{1}$
- - Segunda capa: $H_{1} \rightarrow Z_{2} = H_{1} W_{2} + b_{2} \rightarrow \operatorname{ReLU}(Z_{2}) = H_{2}$
- - Tercera capa: $H_{2} \rightarrow Z_{3} = H_{2} W_{3} + b_{3} \rightarrow \operatorname{ReLU}(Z_{3}) = H_{3}$
+ - Primera capa: $X \rightarrow Z_{1} = X W_{1} + b_{1} \rightarrow \mathrm{ReLU}(Z_{1}) = H_{1}$
+ - Segunda capa: $H_{1} \rightarrow Z_{2} = H_{1} W_{2} + b_{2} \rightarrow \mathrm{ReLU}(Z_{2}) = H_{2}$
+ - Tercera capa: $H_{2} \rightarrow Z_{3} = H_{2} W_{3} + b_{3} \rightarrow \mathrm{ReLU}(Z_{3}) = H_{3}$
 
 ### 3.2 Capa de salida
 
 La capa de salida contiene 10 neuronas, una por cada clase de MNIST,
 y utiliza Softmax para obtener una distribución de probabilidades.
-- Capa de salida: $H_{3} \rightarrow Z_{o} = H_{3}  W_{o} + b_{o} \rightarrow \operatorname{Softmax}(Z_{o}) = Output$
+- Capa de salida: $H_{3} \rightarrow Z_{o} = H_{3}  W_{o} + b_{o} \rightarrow \mathrm{Softmax}(Z_{o}) = Output$
 
 
 ## 4. Entrenamiento
@@ -47,33 +47,40 @@ y utiliza Softmax para obtener una distribución de probabilidades.
 ### 4.1 Propagación hacia adelante 
 
 En cada capa se calcula:
+
 $$
 Z = XW + b
 $$
+
 y posteriormente se aplica la función de activación:
+
 $$
 H = f(Z)
 $$
+
 El proceso se repite hasta obtener las probabilidades de la capa de
 salida.
 
 ### 4.2 Función de pérdida
 Se utilizó Cross-Entropy como función de pérdida:
+
 $$
-L = -\frac{1}{N}\sum_{n=1}^{N}\sum_{i=1}^{10}
-y_{n,i}\log(p_{n,i})
+L = -\frac{1}{N}\sum_{n=1}^{N}\sum_{i=1}^{10}y_{n,i}\log(p_{n,i})
 $$
 
 ### 4.3 Retropropagación
 Los gradientes se calcularon mediante la regla de la cadena.
 Para la combinación Softmax + Cross-Entropy:
+
 $$
 \frac{\partial L}{\partial Z_o} = P-Y
 $$
+
 A partir de este gradiente se calcularon los gradientes de pesos y
 sesgos de cada capa.
 
 La propagracion hacia atras se desglosa de la siguiente manera:
+
 $$
 \frac{\partial L}{\partial b_o}
 =
@@ -102,7 +109,7 @@ $$
 =
 \frac{\partial L}{\partial H_3}
 \odot
-\operatorname{ReLU}'(Z_3)
+\mathrm{ReLU}'(Z_3)
 $$
 
 A partir de este gradiente se calculan los parámetros de la tercera
@@ -137,7 +144,7 @@ $$
 =
 \frac{\partial L}{\partial H_2}
 \odot
-\operatorname{ReLU}'(Z_2)
+\mathrm{ReLU}'(Z_2)
 $$
 
 $$
@@ -169,7 +176,7 @@ $$
 =
 \frac{\partial L}{\partial H_1}
 \odot
-\operatorname{ReLU}'(Z_1)
+\mathrm{ReLU}'(Z_1)
 $$
 
 $$
@@ -194,12 +201,15 @@ Este proceso se repite hasta alcanzar la primera capa oculta. Una vez calculado 
 
 ### 4.4 Actualización de parámetros
 Los parámetros fueron actualizados mediante descenso del gradiente:
+
 $$
 W = W - \eta \nabla W
 $$
+
 $$
 b = b - \eta \nabla b
 $$
+
 Donde $\eta$ representa el learning rate.
 
 
