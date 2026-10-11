@@ -82,117 +82,68 @@ sesgos de cada capa.
 La propagracion hacia atras se desglosa de la siguiente manera:
 
 $$
-\frac{\partial L}{\partial b_o}
-=
-\frac{1}{N}\sum_{n=1}^{N}
-\frac{\partial L}{\partial Z_{o,n}}
+\frac{\partial L}{\partial b_o} = \frac{1}{N}\sum_{n=1}^{N}\frac{\partial L}{\partial Z_{o,n}}
 $$
 
 $$
-\frac{\partial L}{\partial W_o}
-=
-\frac{1}{N}
-H_3^T
-\frac{\partial L}{\partial Z_o}
+\frac{\partial L}{\partial W_o} = \frac{1}{N}H_3^T\frac{\partial L}{\partial Z_o}
 $$
 
 $$
-\frac{\partial L}{\partial H_3}
-=
-\frac{\partial L}{\partial Z_o}W_o^T
+\frac{\partial L}{\partial H_3} = \frac{\partial L}{\partial Z_o}W_o^T
 $$
 
 Para atravesar la función de activación ReLU:
 
 $$
-\frac{\partial L}{\partial Z_3}
-=
-\frac{\partial L}{\partial H_3}
-\odot
-\mathrm{ReLU}'(Z_3)
+\frac{\partial L}{\partial Z_3} = \frac{\partial L}{\partial H_3}\odot\mathrm{ReLU}'(Z_3)
 $$
 
 A partir de este gradiente se calculan los parámetros de la tercera
 capa oculta:
 
 $$
-\frac{\partial L}{\partial b_3}
-=
-\frac{1}{N}
-\sum_{n=1}^{N}
-\frac{\partial L}{\partial Z_{3,n}}
+\frac{\partial L}{\partial b_3} = \frac{1}{N}\sum_{n=1}^{N}\frac{\partial L}{\partial Z_{3,n}}
 $$
 
 $$
-\frac{\partial L}{\partial W_3}
-=
-\frac{1}{N}
-H_2^T
-\frac{\partial L}{\partial Z_3}
+\frac{\partial L}{\partial W_3} = \frac{1}{N}H_2^T\frac{\partial L}{\partial Z_3}
 $$
 
 $$
-\frac{\partial L}{\partial H_2}
-=
-\frac{\partial L}{\partial Z_3}W_3^T
+\frac{\partial L}{\partial H_2} = \frac{\partial L}{\partial Z_3}W_3^T
 $$
 
 El mismo procedimiento se repite para las capas anteriores:
 
 $$
-\frac{\partial L}{\partial Z_2}
-=
-\frac{\partial L}{\partial H_2}
-\odot
-\mathrm{ReLU}'(Z_2)
+\frac{\partial L}{\partial Z_2} = \frac{\partial L}{\partial H_2}\odot\mathrm{ReLU}'(Z_2)
 $$
 
 $$
-\frac{\partial L}{\partial b_2}
-=
-\frac{1}{N}
-\sum_{n=1}^{N}
-\frac{\partial L}{\partial Z_{2,n}}
+\frac{\partial L}{\partial b_2} = \frac{1}{N}\sum_{n=1}^{N}\frac{\partial L}{\partial Z_{2,n}}
 $$
 
 $$
-\frac{\partial L}{\partial W_2}
-=
-\frac{1}{N}
-H_1^T
-\frac{\partial L}{\partial Z_2}
+\frac{\partial L}{\partial W_2} = \frac{1}{N}H_1^T\frac{\partial L}{\partial Z_2}
 $$
 
 $$
-\frac{\partial L}{\partial H_1}
-=
-\frac{\partial L}{\partial Z_2}W_2^T
+\frac{\partial L}{\partial H_1} = \frac{\partial L}{\partial Z_2}W_2^T
 $$
 
 Finalmente:
 
 $$
-\frac{\partial L}{\partial Z_1}
-=
-\frac{\partial L}{\partial H_1}
-\odot
-\mathrm{ReLU}'(Z_1)
+\frac{\partial L}{\partial Z_1} = \frac{\partial L}{\partial H_1}\odot\mathrm{ReLU}'(Z_1)
 $$
 
 $$
-\frac{\partial L}{\partial b_1}
-=
-\frac{1}{N}
-\sum_{n=1}^{N}
-\frac{\partial L}{\partial Z_{1,n}}
+\frac{\partial L}{\partial b_1} = \frac{1}{N}\sum_{n=1}^{N}\frac{\partial L}{\partial Z_{1,n}}
 $$
 
 $$
-\frac{\partial L}{\partial W_1}
-=
-\frac{1}{N}
-X^T
-\frac{\partial L}{\partial Z_1}
+\frac{\partial L}{\partial W_1} = \frac{1}{N}X^T\frac{\partial L}{\partial Z_1}
 $$
 
 
